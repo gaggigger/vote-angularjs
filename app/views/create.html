@@ -1,0 +1,38 @@
+<div>
+	<div class="page-header">		
+	  	<h1>Campaign</h1>
+	</div>
+	<a class="btn btn-primary btn-md" href="#/Campaign/all">All Campaigns</a>
+	<h2>
+  		How to start a new campaign
+	</h2>
+	<p>
+		We have a form, but don't worry its dead simple requiring just a catchy title and a short description. Thats all, then it's down to you to get people to support it!
+	</p>
+	<p>
+		Before you do create a new campaign it's probably a good idea to check the current campaigns beforehand so you don't split the vote.
+	</p>
+	
+	<br/>
+	<div class="panel panel-default">		
+		<div class="panel-body">
+			<form role="form" name="newform" validate>
+			  <div class="form-group" data-ng-class="{'has-error':isInvalid('title')}">
+			    <label class="form-label" for="exampleInputEmail1">Title</label>
+			    <input class="form-control" name="title"
+			    data-ng-model="post.title" type="text" placeholder="Summary"
+			    data-ng-minlength=10 data-ng-maxlength=144 required="">
+			  </div>
+			  <div class="form-group" data-ng-class="{'has-error':isInvalid('description')}">
+			    <label class="form-label" for="exampleInputPassword1">Description</label>
+			    <textarea class="form-control" name="description" data-ng-model="post.description" rows="5" 
+			    required data-ng-minlength=20 data-ng-maxlength=500></textarea>
+			  </div>
+			  
+			  <button data-ng-click="update(post);" data-ng-disabled="newform.$invalid" type="button" class="btn btn-danger">Submit <span class="glyphicon glyphicon-send"></span></button>
+			  <pre>form = {{post | json}}</pre>
+			</form>
+
+		</div>
+	</div>
+</div>

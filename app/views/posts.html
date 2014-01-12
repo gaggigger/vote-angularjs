@@ -1,0 +1,38 @@
+<div>
+	<div class="page-header">
+	  	<h1>Campaigns <small>active ({{ posts.length }})</small></h1>
+	</div>
+	<a class="btn btn-success btn-md" 
+	   data-ng-data-init="predicate='votes';reverse=true'"
+	   href="#/Campaign/new">Create Campaign
+	</a>
+	<a class="btn btn-success btn-md" 
+	   data-ng-data-init="predicate='votes';reverse=true'"
+	   href="#/Campaign/promote">Promo
+	</a>
+	<div class="dropdown pull-right">
+		<a class="dropdown-toggle btn btn-default"><span class="glyphicon glyphicon-sort"></a>
+		<ul class="dropdown-menu pull-right">
+			<li><a data-ng-click="predicate='date';reverse=false">By Date Newest</a></li>
+			<li><a data-ng-click="predicate='date';reverse=true">By Date Oldest</a></li>
+			<li><a data-ng-click="predicate='votes';reverse=false">By Vote Fewest</a></li>
+			<li><a data-ng-click="predicate='votes';reverse=true">By Vote Most</a></li>
+		</ul>
+	</div>	
+	<div class="clearfix"></div>
+	<br/>
+	<div class="panel panel-default"			     
+	     data-ng-repeat="post in posts | orderBy:predicate:reverse | limitTo:5 track by post.id">
+			<div class="panel-heading">
+				<a href="#/Campaign/view/{{post.id}}"><b>{{ post.title }}</b> </a>
+				<span class="badge badge-vote">{{ post.votes }}</span>
+					<button type="button" class="btn btn-default btn-md btn-vote pull-right" 
+					        data-ng-click="support(post)" 
+					        data-ng-class="{'active':userSupports(post.id)}">Support</button>
+				<div class="clearfix"></div>
+			</div>
+			<div class="panel-body">
+				{{ post.description }}
+			</div>
+	</div>
+</div>

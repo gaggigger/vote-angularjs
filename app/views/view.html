@@ -1,0 +1,36 @@
+<div>
+  <div class="page-header">   
+      <h1>Campaign <small>#{{post.id}}</small></h1>
+  </div>  
+  <a class="btn btn-primary btn-md" href="#/Campaign/all">
+    All Campaigns
+  </a>
+  <a class="btn btn-success btn-md" data-ng-click="changeView('create')" href="#/Campaign/new">
+    Create Campaign
+  </a>
+  <div class="pull-right">{{post.date | date: 'yyyy-MM-dd @ HH:mm'}}</div> 
+  <div class="clearfix"></div>
+  <br/>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <b class="heading-vote-title">{{ post.title }}</b>
+      <span class="badge badge-vote">{{ post.votes }}</span>
+        <button type="button" class="btn btn-default btn-md btn-vote pull-right" 
+                data-ng-click="support(post)"
+                data-ng-class="{'active':userSupports(post.id)}">Support</button>
+      <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+      {{ post.description }}
+      <br /><br />
+      <div class="page-header" style="margin:0px">
+        <span class="glyphicon glyphicon-thumbs-up" style="font-size:120%"></span>
+        <b>Supporters</b>    
+      </div>
+      <br />
+      <ul class="list-group" data-ng-model="post.supporters">
+        <li class="list-group-item" data-ng-repeat="s in post.supporters">{{ s }}</li>
+      </ul>  
+    </div>
+  </div>
+</div>
