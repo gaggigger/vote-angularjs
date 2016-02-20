@@ -5,9 +5,9 @@ by voting for them.
 
 ## Main listing
 
-![](https://raw.github.com/ovinn/vote-angluarjs/master/img/overview-campaign.png)
+![](https://raw.github.com/ovinn/vote-angularjs/master/img/overview-campaign.png)
 
 ## Detailed campaign
 
-![](https://raw.github.com/ovinn/vote-angluarjs/master/img/detail-campaign.png)
+![](https://raw.github.com/ovinn/vote-angularjs/master/img/detail-campaign.png)
 
