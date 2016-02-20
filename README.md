@@ -9,5 +9,5 @@ by voting for them.
 
 ## Detailed campaign
 
-![](https://raw.github.com/ovinn/vote-angularjs/master/img/detail-campaign.png)
+![](https://raw.github.com/ovinn/vote-angularjs/master/img/detailed-campaign.png)
 
