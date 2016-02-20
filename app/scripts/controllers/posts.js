@@ -9,6 +9,15 @@ var posts = [
 		date: new Date().toString(),
 		votes: 42,
 		supporters: ['Oliver Vinn', 'John Doe', 'Jane Doe']
+	},
+	{
+		id: 2,
+		title:'system',
+		description: 'We propose the implementation of a new build system that is fast.',
+		inventor: 'Oliver Vinn',
+		date: new Date().toString(),
+		votes: 2,
+		supporters: ['Oliver Vinn', 'John Doe', 'Jane Doe']
 	}
 ];
 
@@ -41,6 +50,8 @@ controllers.CampaignsController = ['$scope', '$routeParams',
 			$scope.post = posts[$routeParams.id - 1];
 		} else {
 			$scope.posts = posts;
+			$scope.predicate = 'date';
+			$scope.reverse = false;
 		}
 
 		$scope.userVotes = userVotes;
@@ -65,55 +76,71 @@ controllers.CampaignsController = ['$scope', '$routeParams',
 		};
 	}
 ];
-voteApp.controller('CampaignsController', controllers.CampaignsController);
+angular.module('voteApp').controller('CampaignsController', controllers.CampaignsController);
 
 controllers.CreateCampaignController = ['$scope', '$location',
 	function ($scope, $location) {
 
 		$scope.$watch('newform', function(){
-    		console.log('$scope.newform', $scope.newform);
-  		});
+			console.log('$scope.newform', $scope.newform);
+		});
 
 		$scope.posts = posts;
+			
+		// Empty post
+		$scope.masterpost = {
+			title: '',
+			description: '',
+			votes: 0,
+			id: -1
+		};
+		
+		// New post
 		$scope.post = {
 			title: '',
 			description: '',
 			votes: 0,
-			id: $scope.posts.length + 1
+			id: -1
 		};
 
+		// Create post
 		$scope.update = function (newPost) {
 			console.log('Post Submitted');
 			newPost.date = new Date().now;
+			newPost.id = $scope.posts.length + 1;
 			console.log(newPost);
 			$scope.posts.push(newPost);
 			$location.path('/Campaign/view/' + newPost.id);
 		};
+		
+		$scope.reset = function() {
+			$scope.post = angular.copy($scope.masterpost);
+		};
 
 		$scope.isInvalid = function(field) {
-    		return ((!$scope.newform[field].$valid) && $scope.newform[field].$dirty);
-  		};
+			return ((!$scope.newform[field].$valid) && $scope.newform[field].$dirty);
+		};
 	}
 ];
-voteApp.controller('CreateCampaignController', controllers.CreateCampaignController);
+angular.module('voteApp').controller('CreateCampaignController', controllers.CreateCampaignController);
 
 controllers.PromoteController = ['$scope',
- 	function ($scope) {
- 		$scope.myInterval = 5000;
- 		var slides = $scope.slides = [];
+	function ($scope) {
+		$scope.myInterval = 5000;
+		var slides = $scope.slides = [];
 
-   		$scope.addSlide = function() {
- 	    	var newWidth = 200 + ((slides.length + (25 * slides.length)) % 150);
- 	    	slides.push({
- 	      		image: 'http://placekitten.com/' + newWidth + '/200',
- 	      		text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
- 	        	['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
- 	    	});
-   		};
-   		for (var i=0; i<4; i++) {
-     		$scope.addSlide();
-   		}
- 	}
- ];
-voteApp.controller('PromoteController', controllers.PromoteController);
+		$scope.addSlide = function() {
+			var newWidth = 200 + ((slides.length + (25 * slides.length)) % 150);
+			slides.push({
+				image: 'http://placekitten.com/' + newWidth + '/200',
+				text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+					['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+			});
+		};
+		for (var i=0; i<4; i++) {
+			$scope.addSlide();
+		}
+	}
+];
+angular.module('voteApp').controller('PromoteController', controllers.PromoteController);
 

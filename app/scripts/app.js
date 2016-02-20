@@ -5,8 +5,8 @@ var voteApp = angular.module('voteApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap',
-  'campaignsServices'
+  'campaignsServices',
+  'ui.bootstrap'
 ]);
 
 voteApp.config(['$locationProvider', '$routeProvider',
